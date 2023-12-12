@@ -5,7 +5,12 @@ const { Sequelize, Op } = require('sequelize');
 const Suppliers = require('../models').suppliers;
 
 router.get('/findAll', function(req, res, next) {
-    res.send("GET All")
+  Suppliers.findAll({  
+  })  
+  .then(suppliers => {  
+      res.json(suppliers);  
+  })  
+  .catch(error => res.status(400).send(error)) 
 });
 router.get('/findById/:id', function(req, res, next) {
     let id = parseInt(req.params.id);
@@ -42,11 +47,11 @@ router.post('/save', function(req, res, next) {
 
 /* PUT supplier. */
 router.put('/update/:id', function(req, res, next) {  
-
-  let {id, SupplierName, ContactName, Address, City, PostalCode, Country, Phone} = req.body;
+  let id = parseInt(req.params.id);
+  let {SupplierName, ContactName, Address, City, PostalCode, Country, Phone} = req.body;
 
   
-  Users.update({
+  Suppliers.update({
     SupplierName: SupplierName,
     ContactName: ContactName,
     Address: Address,
@@ -57,17 +62,27 @@ router.put('/update/:id', function(req, res, next) {
   },
   {
       where: {
-        SupplierID: parseInt(id)
+        SupplierID: id
       }
   })
-  .then(users => {  
-    res.json(users);  
+  .then(suppliers => {  
+    res.json(suppliers);  
 })  
 .catch(error => res.status(400).send(error)) 
 });
-
+/* DELETE supplier */
 router.delete('/delete/:id', function(req, res, next) { 
-    res.send("DELETE")
+  let id = parseInt(req.params.id);
+          
+  Users.destroy({
+    where: { 
+      SupplierID: id
+    }
+  })
+  .then(users => {  
+  res.json(users);  
+})  
+.catch(error => res.status(400).send(error)) 
 });
 
 module.exports = router;
