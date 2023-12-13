@@ -16,8 +16,6 @@ const swaggerFile = require('./swagger_output.json')
 
 const app = express();
 
-/* CONFIGURACIÓN DE LA RUTA A LA DOCUMENTACIÓN */
-app.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,6 +31,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/suppliers', suppliersRouter);
 
+/* CONFIGURACIÓN DE LA RUTA A LA DOCUMENTACIÓN */
+app.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
