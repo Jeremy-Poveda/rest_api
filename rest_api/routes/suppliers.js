@@ -29,7 +29,15 @@ router.get('/findById/:id', function(req, res, next) {
 });
 router.post('/save', function(req, res, next) {
     let {SupplierName, ContactName, Address, City, PostalCode, Country, Phone} = req.body;
-        
+    console.log(SupplierName)
+    console.log(ContactName)
+    console.log(Address)
+    console.log(City)
+    console.log(PostalCode)
+    console.log(Country)
+    console.log(Phone)
+
+
     Suppliers.create({
         SupplierName: SupplierName, 
         ContactName: ContactName, 
@@ -74,13 +82,13 @@ router.put('/update/:id', function(req, res, next) {
 router.delete('/delete/:id', function(req, res, next) { 
   let id = parseInt(req.params.id);
           
-  Users.destroy({
+  Suppliers.destroy({
     where: { 
       SupplierID: id
     }
   })
-  .then(users => {  
-  res.json(users);  
+  .then(suppliers => {  
+  res.json(suppliers);  
 })  
 .catch(error => res.status(400).send(error)) 
 });
