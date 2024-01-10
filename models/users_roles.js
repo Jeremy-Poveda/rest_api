@@ -1,35 +1,31 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('orderdetails', {
-    OrderDetailID: {
+  return sequelize.define('users_roles', {
+    idusers_roles: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    OrderID: {
+    users_iduser: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
-        model: 'orders',
-        key: 'OrderID'
+        model: 'users',
+        key: 'iduser'
       }
     },
-    ProductID: {
+    roles_idrole: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
       references: {
-        model: 'products',
-        key: 'ProductID'
+        model: 'roles',
+        key: 'idrole'
       }
-    },
-    Quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'orderdetails',
+    tableName: 'users_roles',
     timestamps: false,
     indexes: [
       {
@@ -37,21 +33,21 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "OrderDetailID" },
+          { name: "idusers_roles" },
         ]
       },
       {
-        name: "OrderID",
+        name: "fk_users_roles_users_idx",
         using: "BTREE",
         fields: [
-          { name: "OrderID" },
+          { name: "users_iduser" },
         ]
       },
       {
-        name: "ProductID",
+        name: "fk_users_roles_roles1_idx",
         using: "BTREE",
         fields: [
-          { name: "ProductID" },
+          { name: "roles_idrole" },
         ]
       },
     ]
