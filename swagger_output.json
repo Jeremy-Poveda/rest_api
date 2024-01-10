@@ -5,7 +5,7 @@
     "title": "REST API",
     "description": ""
   },
-  "host": "https://restapi-production-42a1.up.railway.app",
+  "host": "restapi-production-42a1.up.railway.app",
   "basePath": "/",
   "schemes": [
     "https"
