@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const { Sequelize, Op } = require('sequelize');
-const Suppliers = require('../models/suppliers').suppliers;
+const Suppliers = require('../models').suppliers;
 
 router.get('/findAll', function (req, res, next) {
 
